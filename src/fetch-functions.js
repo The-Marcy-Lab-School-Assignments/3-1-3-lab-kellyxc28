@@ -1,8 +1,51 @@
-export const getFirstThreeFantasyBooks = () => {
+// async would return the promise in this case
+// we were using then/catch for this ^ before
+
+export const getFirstThreeFantasyBooks = async () => {
+  try {
+    // fetch data with a URL
+    const url = 'https://openlibrary.org/subjects/fantasy.json';
+    const response = await fetch(url);
+
+    // check if the response is okay
+    if (!response.ok) throw new Error(`Failed to get fantasy books`);
+
+    // parse the response body from JSON to a JS Object
+    const jsonData = await response.json();
+
+    // test your data and investigate!
+    // console.log(jsonData.works);
+    // console.log(jsonData.works.slice(0, 3));
+
+    // returns 3 books
+    return jsonData.works.slice(0, 3).map((work) => {
+      return {
+        title: work.title,
+        author: {
+          name: work.authors[0].name,
+          urlKey: work.authors[0].key,
+        },
+        coverUrl: `https://covers.openlibrary.org/a/id/${work.cover_id}-M.jpg`,
+      };
+    });
+  } catch (error) {
+    console.warn(error.message);
+
+    // return new Promise(() => null);
+    return null;
+  }
 };
 
 export const getAuthor = () => {
+  // fetch data with a URL
+  // check if the response is okay
+  // parse the response body from JSON to a JS Object
+  // returns author
 };
 
 export const createNewUser = () => {
-}
+  // fetch data with a URL
+  // check if the response is okay
+  // parse the response body from JSON to a JS Object
+  // returns ??
+};

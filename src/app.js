@@ -30,7 +30,11 @@ export default async function app(appDiv) {
   // renderNewUserForm;
 
   // Fetch the books!
-  // const books =
+  // await is needed because app() is an async function
+  const books = await getFirstThreeFantasyBooks();
+  console.log(books);
+  // books.then((threeWords) => console.log(threeWords));
+
   // render out the books
   // renderBookList
 
