@@ -36,7 +36,7 @@ export default async function app(appDiv) {
   // books.then((threeWords) => console.log(threeWords));
 
   // render out the books
-  // renderBookList
+  renderBookList(bookListEl, books);
 
   // bookListEl.addEventListener('???', () => {})
 
