@@ -38,7 +38,16 @@ export default async function app(appDiv) {
   // render out the books
   renderBookList(bookListEl, books);
 
-  // bookListEl.addEventListener('???', () => {})
+  bookListEl.addEventListener('click', async (event) => {
+    if (
+      event.target.tagName === 'BUTTON' &&
+      event.target.hasAttribute(`data-author-url-key`)
+    ) {
+      const authorUrlKey = event.target.getAttribute('data-author-url-key');
+      const authors = await getAuthor(authorUrlKey);
+      return renderAuthorInfo(authorInfoEl, authors);
+    }
+  });
 
   // newUserFormEl.addEventListener('???', () => {})
 }
