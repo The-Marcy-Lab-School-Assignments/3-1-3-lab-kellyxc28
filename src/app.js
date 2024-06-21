@@ -26,8 +26,9 @@ export default async function app(appDiv) {
   const newUserFormEl = document.createElement('form');
   newUserFormEl.id = 'new-user-form';
   appDiv.append(newUserFormEl);
+
   // Render the form!
-  // renderNewUserForm;
+  renderNewUserForm(newUserFormEl);
 
   // Fetch the books!
   // await is needed because app() is an async function
@@ -46,5 +47,21 @@ export default async function app(appDiv) {
     }
   });
 
-  // newUserFormEl.addEventListener('???', () => {})
+  newUserFormEl.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(newUserFormEl);
+    const formObj = Object.fromEntries(formData);
+
+    // const newUserForm = {
+    //   username: formData.get('username'),
+    //   isCool: formData.get('is-cool'),
+    //   favoriteLanguage: formData.get('favorite-language'),
+    // };
+
+    // renderNewUserForm(newUserEl);
+    const newUser = await createNewUser(formObj);
+    renderNewUser(newUserEl, newUser);
+    newUserFormEl.reset;
+  });
 }

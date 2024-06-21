@@ -49,6 +49,37 @@ export const renderAuthorInfo = (authorInfoEl, author) => {
   authorInfoEl.append(h2, img, bdayP, bioP, a);
 };
 
-export const renderNewUserForm = (newUserFormEl) => {};
+export const renderNewUserForm = (newUserFormEl) => {
+  newUserFormEl.innerHTML = `
+  <label for="username">Username</label>
+  <input type="text" id="username" name="username">
+  <label for="is-cool">Is this user cool?</label>
+  <input type="checkbox" id="is-cool" name="isCool">
+  <label for="favorite-language">Favorite Language</label>
+  <select id="favorite-language" name="favoriteLanguage">
+    <option value="None">None</option>
+    <option value="JavaScript">JavaScript</option>
+    <option value="Python">Python</option>
+    <option value="Ruby">Ruby</option>
+  </select>
+  <button type="submit">Create User</button>
+  `;
+};
 
-export const renderNewUser = (newUserEl, newUser) => {};
+export const renderNewUser = (newUserEl, newUser) => {
+  newUserEl.innerHTML = '';
+  const h2 = document.createElement('h2');
+  h2.textContent = newUser.username;
+  // h2.setAttribute('userId', 'id');
+  h2.dataset.userId = newUser.id;
+
+  const coolP = document.createElement('p');
+  newUser.isCool
+    ? (coolP.textContent = 'The hippest in the house!')
+    : (coolP.textContent = 'A real square.');
+
+  const favLanguageP = document.createElement('p');
+  favLanguageP.textContent = `Favorite Language: ${newUser.favoriteLanguage}`;
+
+  newUserEl.append(h2, coolP, favLanguageP);
+};

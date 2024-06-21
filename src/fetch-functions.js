@@ -60,15 +60,35 @@ export const getAuthor = async (authorUrlKey) => {
     return authors;
   } catch (error) {
     console.warn(error.message);
-
-    // return new Promise(() => null);
     return null;
   }
 };
 
-export const createNewUser = () => {
-  // fetch data with a URL
-  // check if the response is okay
-  // parse the response body from JSON to a JS Object
-  // returns ??
+export const createNewUser = async (newUserData) => {
+  const postOption = {
+    method: 'POST', // The type of HTTP request
+    body: JSON.stringify(newUserData), // The data to be sent to the API
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  try {
+    // fetch data with a URL
+    const url = `https://jsonplaceholder.typicode.com/users`;
+    const response = await fetch(url, postOption);
+
+    // check if the response is okay
+    if (!response.ok) throw new Error(`Failed to create new user`);
+
+    // parse the response body from JSON to a JS Object
+    const jsonData = await response.json();
+    // console.log(jsonData);
+    return jsonData;
+
+    // returns ??
+  } catch (error) {
+    console.warn(error.message);
+    return null;
+  }
 };
