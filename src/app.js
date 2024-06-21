@@ -39,10 +39,7 @@ export default async function app(appDiv) {
   renderBookList(bookListEl, books);
 
   bookListEl.addEventListener('click', async (event) => {
-    if (
-      event.target.tagName === 'BUTTON' &&
-      event.target.hasAttribute(`data-author-url-key`)
-    ) {
+    if (event.target.tagName === 'BUTTON') {
       const authorUrlKey = event.target.getAttribute('data-author-url-key');
       const authors = await getAuthor(authorUrlKey);
       return renderAuthorInfo(authorInfoEl, authors);
