@@ -55,12 +55,13 @@ export default async function app(appDiv) {
 
     // const newUserForm = {
     //   username: formData.get('username'),
-    //   isCool: formData.get('is-cool'),
-    //   favoriteLanguage: formData.get('favorite-language'),
+    //   isCool: formData.get('isCool'),
+    //   favoriteLanguage: formData.get('favoriteLanguage'),
     // };
 
     // renderNewUserForm(newUserEl);
     const newUser = await createNewUser(formObj);
+    // const newUser = await createNewUser(newUserForm);
     renderNewUser(newUserEl, newUser);
     newUserFormEl.reset;
   });
