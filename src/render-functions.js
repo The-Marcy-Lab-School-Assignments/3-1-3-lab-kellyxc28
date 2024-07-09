@@ -18,6 +18,14 @@ export const renderBookList = (bookListEl, books) => {
     p.textContent = `Title: ${book.title}`;
 
     button.textContent = `View ${book.author.name}`;
+    /*
+    FEEDBACK:
+    Great Job overall with this function, however, one issue
+    I've noticed is when you added the dataset. 
+    The 2 lines under this comment both essentially do the same thing. 
+    While both methods are valid in adding the dataset,
+    You only need one of them
+    */
     button.setAttribute('data-author-url-key', book.author.urlKey);
     button.dataset.authorUrlKey = book.author.urlKey;
 
@@ -77,6 +85,12 @@ export const renderNewUser = (newUserEl, newUser) => {
   newUser.isCool
     ? (coolP.textContent = 'The hippest in the house!')
     : (coolP.textContent = 'A real square.');
+    /*
+    FEEDBACK:
+    You could have also wrote it as
+    coolP.textContent = newUser.isCool? 'The hippest in the house!': 'A real square.';
+    Which saves a bit of space
+    */
 
   const favLanguageP = document.createElement('p');
   favLanguageP.textContent = `Favorite Language: ${newUser.favoriteLanguage}`;
